@@ -39,7 +39,7 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
     # Role
     Route::resource('role', 'RoleController');
     # User
-    Route::resource('user', 'UserController');
+    Route::resource('user', 'User\UserController');
 	# Fleet
     Route::resource('fleet', 'FleetController');
 });

@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Admin\Http\Controllers\User;
+namespace App\Http\Controllers\User;
 
-use Pingpong\Modules\Routing\Controller;
+//use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Modules\Admin\Models\Role;
-use Modules\Admin\Models\Privilege;
-use Modules\Admin\Models\Client;
-use Modules\Admin\Models\User;
+use App\Models\Role;
+use App\Models\Privilege;
+//use Modules\Admin\Models\Client;
+use App\Models\User;
 use Auth;
 use Validator;
 use DB;
@@ -46,7 +46,7 @@ class RoleController extends Controller {
         }
 
 
-        return view('admin::role.index', compact('title', 'roles'));
+        return view('user::role.index', compact('title', 'roles'));
     }
 
     /**
@@ -63,7 +63,7 @@ class RoleController extends Controller {
         #echo'<pre>';print_r($clients);die;
         $privileges = Privilege::orderBy('module_id', 'ASC')->get();
 
-        return view('admin::role.create', compact('title', 'privileges', 'clients'));
+        return view('user::role.create', compact('title', 'privileges', 'clients'));
     }
 
     /**
@@ -137,7 +137,7 @@ class RoleController extends Controller {
         #echo'<pre>';print_r($clients);die;
         $privileges = Privilege::orderBy('module_id', 'ASC')->get();
 
-        return view('admin::role.edit', compact('title', 'role', 'clients', 'privileges', 'rolePrivileges'));
+        return view('user::role.edit', compact('title', 'role', 'clients', 'privileges', 'rolePrivileges'));
     }
 
     /**
@@ -195,7 +195,7 @@ class RoleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id) {
-        $user = DB::table('tbl_user')
+        $user = DB::table('users')
                 ->where('role_id', '=', $id)
                 ->get();
         if ($user) {

@@ -115,16 +115,13 @@ class Helper {
      * Get a single configuration value
      *
      * @param string $key
-     * @param int $app_id
      * @return string Value
      */
-    public static function getConfigurationValue($key, $app_id = null) {
-        $sql = DB::table('tbl_app_configuration');
-        $sql->where('config_name', $key);
-        if ($app_id) {
-            $sql->where('app_id', $app_id);
-        }
-        $results = $sql->pluck('config_value');
+    public static function getConfigurationValue($key) {
+        $sql = DB::table('tbl_configuration');
+        $sql->where('conf_key', $key);
+        $sql->where('status', 1);
+        $results = $sql->pluck('conf_value');
 
         if (isset($results[0]))
             return $results[0];

@@ -1,6 +1,5 @@
 <?php
 
-//namespace Modules\Admin\Models;
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +9,7 @@ use DB;
 class User extends Model {
 
     //protected $table = 'tbl_user';
-    protected $fillable = ['app_id', 'role_id', 'rm_id', 'email', 'password', 'phone', 'firstname', 'lastname', 'address', 'status', 'created_by'];
+    protected $fillable = ['id', 'role_id', 'name', 'email', 'user_name', 'password', 'status', 'created_by'];
 
     /*
       |--------------------------------------------------------------------------
@@ -67,8 +66,9 @@ class User extends Model {
      *
      * @return QueryBuilder Object
      */
-    public function roles() {
-        return $this->belongsToMany('Modules\Admin\Models\Role');
+    public function role() {
+        //return $this->belongsToMany('App\Models\Role');
+		return $this->belongsTo('App\Models\Role');
     }
 
     function getRolePrevilagesl($roleId) {
