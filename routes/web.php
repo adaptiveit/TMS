@@ -42,4 +42,16 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
     Route::resource('user', 'UserController');
 	# Fleet
     Route::resource('fleet', 'FleetController');
+    
+ 
+    
+});
+
+Route::get('/admin/fleettype', 'fleettypeController@create')->name('fleettype.create');
+Route::post('/admin/fleettype', 'fleettypeController@store')->name('fleettype.store');
+
+
+
+Route::get('/form',function(){
+   return view('form');
 });
