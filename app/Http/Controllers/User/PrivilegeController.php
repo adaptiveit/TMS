@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Admin\Http\Controllers\User;
+namespace App\Http\Controllers\User;
 
-use Pingpong\Modules\Routing\Controller;
+//use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Modules\Admin\Models\Privilege;
+use App\Models\Privilege;
 use Auth;
 use Validator;
 use DB;
@@ -37,7 +37,7 @@ class PrivilegeController extends Controller {
         #$privileges = Privilege::paginate($limit);
         $privileges = Privilege::all();
 
-        return view('admin::privilege.index', compact('title', 'privileges'));
+        return view('user::privilege.index', compact('title', 'privileges'));
     }
 
     /**
@@ -53,7 +53,7 @@ class PrivilegeController extends Controller {
         $modules = $module + $modules;
         #dd($modules);
 
-        return view('admin::privilege.create', compact('title', 'modules'));
+        return view('user::privilege.create', compact('title', 'modules'));
     }
 
     /**
@@ -118,7 +118,7 @@ class PrivilegeController extends Controller {
         $modules = DB::table('tbl_module')->where('parent_id', '>', 0)->pluck('module_name', 'id');
         $modules = $module + $modules;
 
-        return view('admin::privilege.edit', compact('title', 'privilege', 'modules'));
+        return view('user::privilege.edit', compact('title', 'privilege', 'modules'));
     }
 
     /**

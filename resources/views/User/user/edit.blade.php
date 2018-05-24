@@ -11,20 +11,12 @@
             </div>
         </div>
         <div class="panel-body">
-            {{ Form::open(['route' => ['admin.user.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+            {{ Form::open(['route' => ['user.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-lg-6">
-                    @if (AdminHelper::isSuperAdmin())
-                    <div class="form-group required">
-                        {{ Form::label('client', 'Client:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-8">
-                            {{ Form::select('client', $clients, $user->app_id, ['placeholder' => '- Select -', 'class' => 'form-control']) }}
-                        </div>
-                    </div>
-                    @else
-                        {{ Form::hidden('client', Auth::user()->app_id, ['id' => 'client', 'class' => 'form-control', 'placeholder' => 'App id']) }}
-                    @endif
+                   
+                   
                     <div class="form-group required">
                         {{ Form::label('role', 'Role:', array('class' => 'control-label col-sm-3')) }}
                         <div class="col-sm-8">
@@ -49,54 +41,11 @@
                             {{ Form::password('password', ['id' => 'password', 'class' => 'form-control', 'placeholder' => 'Password']) }}
                         </div>
                     </div>
-                    <div class="form-group required">
-                        {{ Form::label('phone', 'Phone:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-8">
-                            {{ Form::text('phone', $user->phone, ['id' => 'phone', 'class' => 'form-control', 'placeholder' => 'Phone']) }}
-                        </div>
-                    </div>
-                    <div class="form-group required">
-                        {{ Form::label('first_name', 'First Name:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-8">
-                            {{ Form::text('first_name', $user->first_name, ['id' => 'user_name', 'class' => 'form-control', 'placeholder' => 'First name']) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('last_name', 'Last Name:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-8">
-                            {{ Form::text('last_name', $user->last_name, ['id' => 'user_name', 'class' => 'form-control', 'placeholder' => 'Last name']) }}
-                        </div>
-                    </div>
                     
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        {{ Form::label('address', 'Address:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-8">
-                            {{ Form::textarea('address', $user->address, ['id' => 'address', 'class' => 'form-control', 'placeholder' => 'Address', 'rows' => '5']) }}
-                        </div>
-                    </div>
                     <div class="form-group required">
-                        {{ Form::label('state', 'State:', array('class' => 'control-label col-sm-3')) }}
+                        {{ Form::label('name', 'Name:', array('class' => 'control-label col-sm-3')) }}
                         <div class="col-sm-8">
-                            {{ Form::select('state', $states, $user->state_id, ['placeholder' => '- Select -', 'class' => 'form-control']) }}
-                        </div>
-                    </div>
-                    <div class="form-group required">
-                        {{ Form::label('city', 'City:', array('class' => 'control-label col-sm-3')) }}
-                        <input type="hidden" value="{{$user->city_id}}" name="checked_city" id="checked_city">
-                        <div class="col-sm-8">
-                            @if(isset($cities))
-                            <div class="check-all"><input type="checkbox" name="check_all" id="check_all">&nbsp;Check All</div>
-                            <ul class="city-list" id="city-list">
-                                @foreach ($cities as $city)
-                                <li>
-                                    {{ Form::checkbox('city[]', $city->id, null, ['id' => 'city'.$city->id, 'class' => 'checkbox-inline']) }}
-                                    {{ Form::label('city'.$city->id, $city->city_name) }}
-                                </li>
-                                @endforeach
-                            </ul>
-                            @endif
+                            {{ Form::text('name', $user->name, ['id' => 'name', 'class' => 'form-control', 'placeholder' => 'Name']) }}
                         </div>
                     </div>
                     <div class="form-group required">
@@ -106,6 +55,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div class="form-group">
                 {{ Form::label('', '', array('class' => 'control-label col-sm-2')) }}

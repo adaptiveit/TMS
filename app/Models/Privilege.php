@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Admin\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
@@ -48,7 +48,7 @@ class Privilege extends Model {
      * @return QueryBuilder
      */
     public function roles() {
-        return $this->belongsToMany('Modules\Admin\Models\Role');
+        return $this->belongsToMany('App\Models\Role');
     }
 
 }
