@@ -10,6 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 class Fleettype extends Model {
 
     protected $table = 'tbl_fleet_type_master';
-    protected $fillable = ['fleet_type_id', 'fleet_type', 'incharge_id', 'status', 'created_by'];
+    protected $fillable = ['fleet_type_id', 'fleet_type', 'incharge_id', 'status', 'created_by','updated_at'];
     
 }

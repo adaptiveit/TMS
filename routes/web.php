@@ -42,16 +42,28 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
     Route::resource('user', 'User\UserController');
 	# Fleet
     Route::resource('fleet', 'FleetController');
-    
+       
+   Route::resource('role', 'RoleController');
+   
+   Route::resource('fleettype', 'fleettypeController');
+   
+  Route::resource('group', 'GroupController');
+  
+  Route::resource('option', 'OptionController'); 
  
     
 });
 
-Route::get('/admin/fleettype', 'fleettypeController@create')->name('fleettype.create');
-Route::post('/admin/fleettype', 'fleettypeController@store')->name('fleettype.store');
+//Route::get('/admin/fleettype', 'fleettypeController@create')->name('fleettype.create');
+//Route::get('/admin/list', 'fleettypeController@index')->name('fleettype.index');
+//Route::post('/admin/fleettype', 'fleettypeController@store')->name('fleettype.store');
+//Route::get('/admin/fleettype/edit/{id}', 'fleettypeController@edit')->name('fleettype.edit');
+//Route::put('/admin/fleettype/edit/{id}', 'fleettypeController@update')->name('fleettype.update');
 
 
 
-Route::get('/form',function(){
+
+
+/*Route::get('/form',function(){
    return view('form');
-});
+});*/

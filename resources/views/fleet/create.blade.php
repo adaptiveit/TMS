@@ -20,6 +20,8 @@
                         {{ Form::text('app_name', old('app_name'), ['id' => 'app_name', 'class' => 'form-control', 'placeholder' => 'App name']) }}
                     </div>
                 </div>
+                
+                 
                 <div class="form-group required">
                     {{ Form::label('app_key', 'App Key:', array('class' => 'control-label col-sm-2')) }}
                     <div class="col-sm-6">

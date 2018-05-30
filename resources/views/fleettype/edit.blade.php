@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="panel-body">
-            {{ Form::open(['route' => ['fleettype.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
+            {{ Form::open(['route' => ['fleettype.update',$data->id], 'method' => 'put', 'class' => 'form-horizontal']) }}
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-lg-6">
@@ -23,7 +23,7 @@
                     <div class="form-group required">
                         {{ Form::label('fleet_type', '	fleettype:', array('class' => 'control-label col-sm-3')) }}
                         <div class="col-sm-8">
-                            {{ Form::text('fleet_type', old('fleet_type'), ['id' => 'fleet_type', 'class' => 'form-control', 'placeholder' => 'fleettype']) }}
+                            {{ Form::text('fleet_type', $data->fleet_type, ['id' => 'fleet_type', 'class' => 'form-control', 'placeholder' => 'fleettype']) }}
                         </div>
                     </div>
                    
@@ -31,7 +31,7 @@
                  <div class="form-group required">
                         {{ Form::label('fleet_id', '	fleetid:', array('class' => 'control-label col-sm-3')) }}
                         <div class="col-sm-8">
-                            {{ Form::text('fleet_id', old('fleet_id'), ['id' => 'fleet_id', 'class' => 'form-control', 'placeholder' => 'fleetid']) }}
+                            {{ Form::text('fleet_id', $data->incharge_id, ['id' => 'fleet_id', 'class' => 'form-control', 'placeholder' => 'fleetid']) }}
                         </div>
                     </div>
                    
@@ -39,7 +39,7 @@
 					 <div class="form-group required">
                         {{ Form::label('status', 'Status:', array('class' => 'control-label col-sm-3')) }}
                         <div class="col-sm-8">
-                            {{ Form::select('status', ['1' => 'Active','0' => 'Inactive'], old('status'), ['placeholder' => '- Select -', 'class' => 'form-control']) }}
+                            {{ Form::select('status', ['1' => 'Active','0' => 'Inactive'], $data->status, ['placeholder' => '- Select -', 'class' => 'form-control']) }}
                         </div>
                     </div>
                     
