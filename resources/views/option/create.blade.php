@@ -85,23 +85,23 @@ $(document).ready(function(){
                                              
                       <div class="container-fluid">
   <div class="row">
-    <div class="col bg-successff">
-		{{ Form::label('id', 'id:', array('class' => 'control-label')) }}
-                        <div class="col-sm-kkk">
-                            {{ Form::text('id', old('id'), ['name' => 'id[]', 'class' => 'form-control', 'placeholder' => 'id']) }}
-                     
+	   <div class="col-sm-jj">
+		{{ Form::label('status', 'Status:', array('class' => 'control-label col-sm-3')) }}
+                        <div class="col-sm">
+                            {{ Form::select('status[]', ['1' => 'Active','0' => 'Inactive'], old('status'), ['name' => 'status[]','placeholder' => '- Select -', 'class' => 'form-control']) }}
                         </div>
     </div>
+   
     <div class="col bg-warningff">
 		{{ Form::label('group', 'group:', array('class' => 'control-label col-sm-3')) }}
                         <div class="col-sm">
-                            {{ Form::select('group', $id, old('status'), ['name' => 'group[]','placeholder' => '- Select -', 'class' => 'form-control']) }}
+                            {{ Form::select('group[]', $id, old('status'), ['name' => 'group[]','placeholder' => '- Select -', 'class' => 'form-control']) }}
                         </div>
     </div>
     <div class="col bg-successee">
 		{{ Form::label('label', 'label:', array('class' => 'control-label')) }}
                         <div class="col-sm-kkk">
-                            {{ Form::text('label', old('label'), ['name' => 'label[]', 'class' => 'form-control', 'placeholder' => 'label']) }}
+                            {{ Form::text('label', old('label[]'), ['name' => 'label[]', 'class' => 'form-control', 'placeholder' => 'label']) }}
                        
                         </div>
     
@@ -121,19 +121,16 @@ $(document).ready(function(){
 		{{ Form::label('value', 'value:', array('class' => 'control-label')) }}
                         <div class="col-sm-kkk">
                             {{ Form::text('value[]', old('value'), ['name' => 'value[]', 'class' => 'form-control', 'placeholder' => 'value']) }}
-                            {{ Form::text('value[]', old('value'), ['name' => 'value[]', 'class' => 'form-control', 'placeholder' => 'value']) }}
+                                             {{ Form::text('value[]', old('value'), ['name' => 'value[]', 'class' => 'form-control', 'placeholder' => 'value']) }}
+                                                              {{ Form::text('value[]', old('value'), ['name' => 'value[]', 'class' => 'form-control', 'placeholder' => 'value']) }}
                            
-                           {{ Form::text('value[]', old('value'), ['name' => 'value[]', 'class' => 'form-control', 'placeholder' => 'value']) }}
-                           
-                           
-                             
-                   
+                                                                       
                         </div>
     </div>
     <div class="col">
 		{{ Form::label('name', 'name:', array('class' => 'control-label')) }}
                         <div class="col-sm-kkk">
-                            {{ Form::text('name[]', old('name'), ['name' => 'name[0]', 'class' => 'form-control', 'placeholder' => 'name']) }}
+                            {{ Form::text('name[]', old('name'), ['name' => 'name[]', 'class' => 'form-control', 'placeholder' => 'name']) }}
                              
                         </div>
     </div>
@@ -141,7 +138,7 @@ $(document).ready(function(){
      <div class="col">
 		{{ Form::label('grouping', 'grouping:', array('class' => 'control-label')) }}
                         <div class="col-sm-kkk">
-                            {{ Form::text('grouping[]', old('grouping'), ['name' => 'grouping[0]', 'class' => 'form-control', 'placeholder' => 'grouping']) }}
+                            {{ Form::text('grouping[]', old('grouping'), ['name' => 'grouping[]', 'class' => 'form-control', 'placeholder' => 'grouping']) }}
                           
                         </div>
     </div>
@@ -154,20 +151,7 @@ $(document).ready(function(){
 
 <a href="javascript:void(0);" class="add_button" title="Add field">Add more</a>
 
- <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4">
-		{{ Form::label('status', 'Status:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm">
-                            {{ Form::select('status', ['1' => 'Active','0' => 'Inactive'], old('status'), ['name' => 'status[]','placeholder' => '- Select -', 'class' => 'form-control']) }}
-                        </div>
-    </div>
-    
-    
-    
-    
-    </div>
-  </div>
+ 
    
   </div>
 </div>   

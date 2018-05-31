@@ -50,13 +50,7 @@ $(document).ready(function(){
                        
                     </div>
                    
-                    <div class="form-group required test">
-                        {{ Form::label('id', '	id:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-3">
-                            {{ Form::text('id', old('id'), ['id' => 'id', 'class' => 'form-control', 'placeholder' => 'id']) }}
-                        <a href="#" id="add">Add More Input Field</a>
-                        </div>
-                    </div>
+                    
                     
                     <div class="form-group required test">
                         {{ Form::label('Name', '	Name:', array('class' => 'control-label col-sm-3')) }}
