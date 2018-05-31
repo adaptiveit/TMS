@@ -11,18 +11,8 @@
             </div>
         </div>
         <div class="panel-body">
-            {{ Form::open(['route' => ['admin.role.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
+            {{ Form::open(['route' => ['role.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
                 {{ csrf_field() }}
-                @if (AdminHelper::isSuperAdmin())
-                <div class="form-group required">
-                    {{ Form::label('client', 'Client:', array('class' => 'control-label col-sm-2')) }}
-                    <div class="col-sm-6">
-                        {{ Form::select('client', $clients, old('client'), ['class' => 'form-control']) }}
-                    </div>
-                </div>
-                @else
-                    {{ Form::hidden('client', Auth::user()->app_id, ['id' => 'client', 'class' => 'form-control', 'placeholder' => 'App id']) }}
-                @endif
                 <div class="form-group required">
                     {{ Form::label('role_name', 'Role Name:', array('class' => 'control-label col-sm-2')) }}
                     <div class="col-sm-6">
