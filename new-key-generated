@@ -1,0 +1,3 @@
+adaptivesystem01@adaptivesystem01:/var/www/html/TMS$ php artisan key:generate
+Application key [base64:qrgur6Zqcej+1F3iQanUABjQDjeol6BWWk21h4uqU30=] set successfully.
+adaptivesystem01@adaptivesystem01:/var/www/html/TMS$ 
