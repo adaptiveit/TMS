@@ -62,7 +62,7 @@ $this->validate($req, [
         'title' => 'required',
         'status' => 'required'
     ]);
-    $id=$req->input('id');
+   
     $name=$req->input('name');
     $title=$req->input('title');
     $status=$req->input('status');
@@ -72,7 +72,7 @@ $this->validate($req, [
     $created_by=Auth::user()->id;
 	$updated_by=Auth::user()->id;
 	
-	$data=array("id"=>$id,"name"=>$name,"title"=>$title,"description"=>$description,"status"=>$status,
+	$data=array("name"=>$name,"title"=>$title,"description"=>$description,"status"=>$status,
 	"created_by"=>$created_by,"updated_by"=>$updated_by
 	
 	);

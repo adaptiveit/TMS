@@ -61,77 +61,37 @@ public function create()
 
 public function store(Request $req)
     {
-//$data = $req->all();
+$data = $req->all();
 //echo '<pre>'; print_r($data); '</pre>';exit;
 $input = Option::all();		
 $this->validate($req, [
-        'id' => 'required',
         'group' => 'required',
         'status' => 'required'
     ]);
  $medicineData = array();
- /*foreach($data as $vval){
-	
-	$medicineData=array(
-	  $created_by=Auth::user()->id,
-	 $updated_by=Auth::user()->id,
-	 $isdefault='0',
-	 $weight='1',
-	//'id'=>$vval['id'],
-	'option_group_id'=>$vval['group'],
-	'label'=>$vval['label'],
-	'value'=>$vval['value'],
-	'name'=>$vval['name'],
-	'grouping'=>$vval['grouping'],
-	'status'=>$vval['status'],
-	'is_default'=>$isdefault,
-	'weight'=>$weight,
-	'created_by'=>$created_by,
-	'updated_by'=>$updated_by,
-	
-	
-	);
+ 
 
-		    DB::table('tbl_option_value')->insert($medicineData);
-	     return redirect('admin/option/create');
-	
 
-}*/
+
 
  
-   /* $id=$req->input('id');
-    $label=$req->input('label');
-    $value[0]=$req->input('value');
-    $value[1]=$req->input('value');
-    $value[2]=$req->input('value');
-    $name[0]=$req->input('name');
-    $name[1]=$req->input('name');
-    $name[2]=$req->input('name');
-    $grouping[0]=$req->input('grouping');
-    $grouping[1]=$req->input('grouping');
-    $grouping[2]=$req->input('grouping');
-    $status=$req->input('status');
-    $isdefault=	'0';
-    $weight='1';
-    $created_by=Auth::user()->id;
-	$updated_by=Auth::user()->id;
-	$data=array("id"=>$id,"option_group_id"=>$group,"label"=>$label,"value"=>$value[0],"value"=>$value[1],"value"=>$value[2], "name"=>$name[0],"name"=>$name[1],"name"=>$name[2],"grouping"=>$grouping[0],"grouping"=>$grouping[1],"grouping"=>$grouping[2],"is_default"=>$isdefault,"weight"=>$weight,
-	"status"=>$status,
-	"created_by"=>$created_by,"updated_by"=>$updated_by);
-	    DB::table('tbl_option_value')->insert($data);
-	     return redirect('admin/option/create');*/
-	  //print_r($id);exit;
-	
-  /*$medicineData=array();
-    foreach($input as $val){
-		
-		
-		
-	}*/
-   /* $id=$req->input('id');
+  
+   // $id=$req->input('id');
     $group=$req->input('group');
     $label=$req->input('label');
     $value=$req->input('value');
+    $array_product = array();
+    $i = 0;
+    $a=array();
+    foreach ($value as $k=>$v)
+{
+	 
+  $a[]=$v;  
+	
+	
+}
+//print_r($a);exit;
+     
     $name=$req->input('name');
     $grouping=$req->input('grouping');
     $status=$req->input('status');
@@ -140,11 +100,11 @@ $this->validate($req, [
     $created_by=Auth::user()->id;
 	$updated_by=Auth::user()->id;
 	
-	$data=array("id"=>$id,"option_group_id"=>$group,"label"=>$label,"value"=>$value, "name"=>$name,"grouping"=>$grouping,"is_default"=>$isdefault,"weight"=>$weight,
+	$data=array("option_group_id"=>$group,"label"=>$label,"value"=>$a, "name"=>$name,"grouping"=>$grouping,"is_default"=>$isdefault,"weight"=>$weight,
 	"status"=>$status,
 	"created_by"=>$created_by,"updated_by"=>$updated_by);
 	    DB::table('tbl_option_value')->insert($data);
-	     return redirect('admin/option/create');*/
+	     return redirect('admin/option/create');
 	   
    
     
