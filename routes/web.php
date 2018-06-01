@@ -35,9 +35,9 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
     Route::get('dashboard', 'DashboardController@index');
 
     # Privilege
-    Route::resource('privilege', 'PrivilegeController');
+    Route::resource('privilege', 'User\PrivilegeController');
     # Role
-    Route::resource('role', 'RoleController');
+    Route::resource('role', 'User\RoleController');
     # User
     Route::resource('user', 'User\UserController');
 	# Fleet

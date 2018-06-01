@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-//use Pingpong\Modules\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Role;
 use App\Models\Privilege;
-//use Modules\Admin\Models\Client;
 use App\Models\User;
 use Auth;
 use Validator;
@@ -35,18 +34,10 @@ class RoleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $title = "Role";
+		$title = "Role";
         $superAdminDetail = AdminHelper::superAdminDetail();
-        if (AdminHelper::isSuperAdmin()) {
-            $roles = Role::all();
-        } else {
-            $roles = Role::where('app_id', '=', Auth::user()->app_id)
-                    ->where('id', '!=', $superAdminDetail->role_id)
-                    ->get();
-        }
-
-
-        return view('user::role.index', compact('title', 'roles'));
+        $roles = Role::all();
+        return view('user.role.index', compact('title', 'roles'));
     }
 
     /**
@@ -57,13 +48,10 @@ class RoleController extends Controller {
     public function create() {
         $title = "Role";
 
-        $client = ['' => 'Select'];
-        $clients = DB::table('tbl_app')->pluck('app_name', 'id');
-        $clients = $client + $clients;
-        #echo'<pre>';print_r($clients);die;
         $privileges = Privilege::orderBy('module_id', 'ASC')->get();
-
-        return view('user::role.create', compact('title', 'privileges', 'clients'));
+		
+		//echo'<pre>';print_r($privileges);die;
+        return view('user.role.create', compact('title', 'privileges'));
     }
 
     /**
