@@ -54,44 +54,69 @@ public function create()
     }
 
     
-    
+ public function store(Request $request) {
+        $data = $request->all();
+        $rules = array(
+            //'role' => 'required|integer',
+            //'user_name' => 'required|min:6|max:15|unique:users',
+           
+			//'name' => 'required',
+             'status' => 'required|boolean',
+        );
+        $validator = Validator::make($data, $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return redirect('admin/option/create')->withErrors($validator)->withInput();
+        } else {
+            $option = new Option;
+            //echo"<pre>";print_r($data);echo"</pre>";
+            $created_by=Auth::user()->id;
+			$updated_by=Auth::user()->id;
+			$group = $data['group'];
+			$status = $data['status'];
+            foreach($data['option_value'] as  $row){
+             	$option->option_group_id= $group;
+             	$option->label= $row['label'];
+             	$option->value= $row['value'];
+             	$option->name= $row['name'];
+             	$option->is_default= 0;
+             	$option->weight= 1;
+             	$option->status= $status;
+				$option->created_by 	= $created_by;
+				$option->updated_by 	= $updated_by;
+            $option->save();
+           //Option::create($option->save());
+            
+		}
+		//echo"<pre>";print_r($option);echo"</pre>";exit;
+		//id`, `option_group_id`, `label`, `value`, `name`, `grouping`, `filter`, `is_default`, `weight`, `description`, `is_optgroup`, `is_reserved`, //`status`, `component_id`, `visibility_id`, `created_by`, `updated_by`, `created_at`, `updated_at`
+		
+	
+            // redirect
+            $request->session()->flash('alert-success', 'User successfully created!');
+            return redirect('admin/user');
+        }
+    }
     
     
     /*ANITA*/
 
-public function store(Request $req)
+/*public function store(Request $req)
     {
 $data = $req->all();
-//echo '<pre>'; print_r($data); '</pre>';exit;
+echo '<pre>'; print_r($data); '</pre>';exit;
 $input = Option::all();		
-$this->validate($req, [
+/*$this->validate($req, [
         'group' => 'required',
         'status' => 'required'
-    ]);
- $medicineData = array();
+    ]);*/
+ /*$medicineData = array();
  
-
-
-
-
- 
+   $group=$req->input('group');
+  $label=$req->input('label');
+  $value=$req->input('value');
   
-   // $id=$req->input('id');
-    $group=$req->input('group');
-    $label=$req->input('label');
-    $value=$req->input('value');
-    $array_product = array();
-    $i = 0;
-    $a=array();
-    foreach ($value as $k=>$v)
-{
-	 
-  $a[]=$v;  
-	
-	
-}
-//print_r($a);exit;
-     
     $name=$req->input('name');
     $grouping=$req->input('grouping');
     $status=$req->input('status');
@@ -100,7 +125,7 @@ $this->validate($req, [
     $created_by=Auth::user()->id;
 	$updated_by=Auth::user()->id;
 	
-	$data=array("option_group_id"=>$group,"label"=>$label,"value"=>$a, "name"=>$name,"grouping"=>$grouping,"is_default"=>$isdefault,"weight"=>$weight,
+	$data=array("option_group_id"=>$group,"label"=>$label,"value"=>$value, "name"=>$name,"grouping"=>$grouping,"is_default"=>$isdefault,"weight"=>$weight,
 	"status"=>$status,
 	"created_by"=>$created_by,"updated_by"=>$updated_by);
 	    DB::table('tbl_option_value')->insert($data);
@@ -112,7 +137,7 @@ $this->validate($req, [
 	   
    
        
-	}
+	}*/
 	
 	/*public function store(Request $request) { 
 		

@@ -45,7 +45,7 @@ $(document).ready(function(){
             <div class="panel-title">Add new </div>
             
                <div class="pull-right">
-                <a href="{{ URL::to('admin/fleettype') }}" class="btn btn-default btn-xs"><span class="fa  fa-arrow-circle-o-left"></span> Back</a>
+                <a href="{{ URL::to('admin/option') }}" class="btn btn-default btn-xs"><span class="fa  fa-arrow-circle-o-left"></span> Back</a>
             
             </div>
         </div>
