@@ -10,6 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model {
 
     protected $table = 'tbl_option_value';
-    protected $fillable = ['id','option_group_id', 'label', 'value', 'name','grouping','is_default', 'weight','description','is_optgroup','	is_reserved','status','component_id','visibility_id','created_by','updated_by'];
+    protected $fillable = ['option_group_id', 'label', 'value', 'name','grouping','is_default', 'weight','description','is_optgroup','	is_reserved','status','component_id','visibility_id','created_by','updated_by'];
     
 }

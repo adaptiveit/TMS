@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Fleet;
 use Auth;
 use Validator;
+use View;
 
 class FleetController extends Controller {
 
@@ -58,6 +59,7 @@ class FleetController extends Controller {
      */
     public function store(Request $request) {
         $data = $request->all();
+       // echo'<pre>';print_r($data);die;
         $rules = array(
             'app_name' => 'required|max:255',
             'app_key' => 'required',

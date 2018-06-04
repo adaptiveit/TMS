@@ -28,9 +28,9 @@ public function index() {
         // get all the nerds
         $limit = config('admin.record_per_page');
         #$clients = Client::paginate($limit);
-        $fleets = Group::all();
-		//dd($fleets);
-        return view('fleettype.index', compact('title', 'fleets'));
+        $groups = Group::all();
+		
+        return view('fleettype.index', compact('title', 'groups'));
 }
 
     
@@ -95,6 +95,7 @@ public function show($id) {
  public function edit($id) {
         $title = "Fleettype edit";
         $data = Group::find($id);
+        print_r( $data);exit;
         return view('fleettype.edit', compact('title', 'data'));
   }
   

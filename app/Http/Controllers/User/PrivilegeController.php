@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 //use Pingpong\Modules\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Privilege;
