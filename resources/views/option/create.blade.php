@@ -3,6 +3,28 @@
 @section('content')
 
 
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+     var x = 3;2
+  var fieldHTML = '<div class="form-group required"><label for="label" class="control-label col-sm-3">label:</label><div class="col-sm-3"><input id="label'+x+'" class="form-control" placeholder="label" name="option_value['+x+'][label]" type="text"> </div><label for="value" class="control-label col-sm-3">value:</label><div class="col-sm-3"><input id="value'+x+'" class="form-control" placeholder="value" name="option_value['+x+'][value]" type="text"> </div><label for="name" class="control-label col-sm-3">name:</label><div class="col-sm-3"><input id="name'+x+'" class="form-control" placeholder="name" name="option_value['+x+'][name]" type="text"> </div> <a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>';
+   
+   //Initial field counter is 1
+    $(addButton).click(function(){ //Once add button is clicked
+        if(x < maxField){ //Check maximum number of input fields
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); // Add field html
+        }
+    });
+    $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
 
 <div class="col-lg-12">
     <div class="panel panel-default filterable">
@@ -27,7 +49,7 @@
                     
                      <fieldset>
  
-        <legend>Group Form</legend>
+        <legend>Legend</legend>
                     <div class="form-group required test">
                         {{ Form::label('Name', '	Name:', array('class' => 'control-label col-sm-3')) }}
                         <div class="col-sm-3">
@@ -119,7 +141,7 @@
                     
                      <fieldset>
  
-        <legend>Option Group</legend>
+        <legend>Legend</legend>
                    
                     <div class="field_wrapper">
                    
@@ -153,7 +175,7 @@
                             {{ Form::text('option_value[1][name]', old('name'), ['id' => 'name1', 'class' => 'form-control', 'placeholder' => 'name']) }}
                         </div>
                     </div>
-                   
+                    <a href="javascript:void(0);" class="add_button" title="Add field">Add more</a>
                     </div>
                     
                     

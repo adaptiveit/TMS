@@ -31,9 +31,9 @@
       <div class="panel-heading">Select State and get bellow Related City</div>
       <div class="panel-body">
             <div class="form-group">
-                <label for="title">Select State:</label>
+                <label for="title">Select Group Name:</label>
                  <select name="state" class="form-control" style="width:350px">
-                    <option value="">--- Select State ---</option>
+                    <option value="">--- Select Group Name ---</option>
                     @foreach ($fleets as $key => $value)
                         <option value="{{ $key }}">{{ $value}}</option>
                     @endforeach
@@ -41,7 +41,7 @@
                 
             </div>
             <div class="form-group">
-                <label for="title">Select City:</label>
+                <label for="title">Select Option value:</label>
                 <select name="city" class="form-control" style="width:350px">
                 </select>
             </div>

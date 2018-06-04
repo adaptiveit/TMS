@@ -53,6 +53,25 @@ public function create()
         
        
     }
+    
+public function list()
+    {
+				
+	$title = "User";
+    return view('demo.list',compact('title'));
+        
+                   
+    }  
+    
+    
+public function listindex(Request $request)
+    {
+        $products = Option::paginate(5);
+        return response(array(
+                'error' => false,
+                'products' =>$products->toArray(),
+               ),200);       
+    }      
       
 public function index() {
         $title = "Option";

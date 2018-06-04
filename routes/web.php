@@ -56,8 +56,14 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
 });
 Route::get('admin',array('as'=>'demo','uses'=>'DemoController@index'));
 Route::get('admin/ajax/{id}',array('as'=>'demo.ajax','uses'=>'DemoController@myformAjax'));
-Route::get('vuejs/autocomplete', 'VueJSController@autocomplete');
-Route::get('vuejs/autocomplete/search', 'VueJSController@autocompleteSearch');
+
+Route::get('admin/list',array('as'=>'tab','uses'=>'TabController@list'));
+Route::get('admin/json',array('as'=>'tab','uses'=>'TabController@form'));
+
+Route::get('autocomplete', 'AjaxAutocompleteController@index');
+Route::get('searchajax', ['as'=>'searchajax','uses'=>'AjaxAutocompleteController@searchResponse']);
+
+
 //Route::get('search/autocomplete', 'DemoController@autocomplete');
 //Route::get('admin',array('as'=>'demo','uses'=>'DemoController@searchResponse'));
 //Route::get('searchajax', ['as'=>'demo.searchajax','uses'=>'DemoController@searchResponse']);
