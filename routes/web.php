@@ -50,9 +50,17 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
   Route::resource('group', 'GroupController');
   
   Route::resource('option', 'OptionController'); 
+  //Route::resource('demo', 'DemoController'); 
  
     
 });
+Route::get('admin',array('as'=>'demo','uses'=>'DemoController@index'));
+Route::get('admin/ajax/{id}',array('as'=>'demo.ajax','uses'=>'DemoController@myformAjax'));
+Route::get('vuejs/autocomplete', 'VueJSController@autocomplete');
+Route::get('vuejs/autocomplete/search', 'VueJSController@autocompleteSearch');
+//Route::get('search/autocomplete', 'DemoController@autocomplete');
+//Route::get('admin',array('as'=>'demo','uses'=>'DemoController@searchResponse'));
+//Route::get('searchajax', ['as'=>'demo.searchajax','uses'=>'DemoController@searchResponse']);
 
 //Route::get('/admin/fleettype', 'fleettypeController@create')->name('fleettype.create');
 //Route::get('/admin/list', 'fleettypeController@index')->name('fleettype.index');
