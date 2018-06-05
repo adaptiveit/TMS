@@ -16,8 +16,8 @@
 
 <div id="tabs">
     <ul>
-        <li><a href="#tabs-1">Orders</a></li>
-        <li><a href="#tabs-2">Employees</a></li>
+        <li><a href="#tabs-1" id="one">Orders</a></li>
+        <li><a href="#tabs-2" id="two">Employees</a></li>
         <li><a href="?gn=products">Products</a></li>
         <li><a href="?gn=customers">Customers</a></li>
         <li><a href="?gn=suppliers">Suppliers</a></li>
@@ -56,7 +56,40 @@
             }
         }
     });
+    
+    
+    
+    
+  $(' #tabs ul li a#one').click(function(){
+
+   var id = $(this).val(); 
+   print_r(this);
+		
+       $.ajax({
+             url: '/index.php/api/test/'+id,
+            method: "GET", 
+            dataType: "json", 
+            //data:{id:id},  
+            success:function(data){
+				console.log(data);
+                 $('#tabs-1').html(data);  
+           }  
+
+       });  
+   
+
+  });   
+    
+    
+    
+    
+    
   } );
+  
+  
+  
+  
+  
        
   
 </script>
