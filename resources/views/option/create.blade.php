@@ -8,7 +8,7 @@ $(document).ready(function(){
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
     var wrapper = $('.field_wrapper'); //Input field wrapper
-     var x = 3;2
+     var x = 2;
   var fieldHTML = '<div class="form-group required"><label for="label" class="control-label col-sm-3">label:</label><div class="col-sm-3"><input id="label'+x+'" class="form-control" placeholder="label" name="option_value['+x+'][label]" type="text"> </div><label for="value" class="control-label col-sm-3">value:</label><div class="col-sm-3"><input id="value'+x+'" class="form-control" placeholder="value" name="option_value['+x+'][value]" type="text"> </div><label for="name" class="control-label col-sm-3">name:</label><div class="col-sm-3"><input id="name'+x+'" class="form-control" placeholder="name" name="option_value['+x+'][name]" type="text"> </div> <a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>';
    
    //Initial field counter is 1
