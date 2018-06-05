@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
    Route::resource('role', 'RoleController');
    
    Route::resource('fleettype', 'fleettypeController');
+   Route::resource('fuelstation', 'FuelstationController');
    
   Route::resource('group', 'GroupController');
   
