@@ -9,7 +9,7 @@ $(document).ready(function(){
     var addButton = $('.add_button'); //Add button selector
     var wrapper = $('.field_wrapper'); //Input field wrapper
      var x = 2;
-  var fieldHTML = '<div class="form-group required"><label for="label" class="control-label col-sm-3">label:</label><div class="col-sm-3"><input id="label'+x+'" class="form-control" placeholder="label" name="option_value['+x+'][label]" type="text"> </div><label for="value" class="control-label col-sm-3">value:</label><div class="col-sm-3"><input id="value'+x+'" class="form-control" placeholder="value" name="option_value['+x+'][value]" type="text"> </div><label for="name" class="control-label col-sm-3">name:</label><div class="col-sm-3"><input id="name'+x+'" class="form-control" placeholder="name" name="option_value['+x+'][name]" type="text"> </div> <a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>';
+  var fieldHTML = '<div class="form-group required"><label for="label" class="control-label col-sm-2">label:</label><div class="col-sm-2"><input id="label'+x+'" class="form-control" placeholder="label" name="option_value['+x+'][label]" type="text"> </div><label for="value" class="control-label col-sm-2">value:</label><div class="col-sm-2"><input id="value'+x+'" class="form-control" placeholder="value" name="option_value['+x+'][value]" type="text"> </div><label for="name" class="control-label col-sm-2">name:</label><div class="col-sm-2"><input id="name'+x+'" class="form-control" placeholder="name" name="option_value['+x+'][name]" type="text"> </div> <a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>';
    
    //Initial field counter is 1
     $(addButton).click(function(){ //Once add button is clicked
@@ -32,7 +32,7 @@ $(document).ready(function(){
             <div class="panel-title">Add new </div>
             
                <div class="pull-right">
-                <a href="{{ URL::to('admin/fleettype') }}" class="btn btn-default btn-xs"><span class="fa  fa-arrow-circle-o-left"></span> Back</a>
+                <a href="{{ URL::to('admin/option') }}" class="btn btn-default btn-xs"><span class="fa  fa-arrow-circle-o-left"></span> Back</a>
             
             </div>
         </div>
@@ -146,32 +146,32 @@ $(document).ready(function(){
                     <div class="field_wrapper">
                    
                  <div class="form-group required">
-                        {{ Form::label('label', '	label:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-3">
+                        {{ Form::label('label', '	label:', array('class' => 'control-label col-sm-2')) }}
+                        <div class="col-sm-2">
                             {{ Form::text('option_value[0][label]', old('label'), ['id' => 'label0', 'class' => 'form-control', 'placeholder' => 'label']) }}
                         </div>
-                        {{ Form::label('value', 'value:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-3">
+                        {{ Form::label('value', 'value:', array('class' => 'control-label col-sm-2')) }}
+                        <div class="col-sm-2">
                             {{ Form::text('option_value[0][value]', old('value'), ['id' => 'value0', 'class' => 'form-control', 'placeholder' => 'value']) }}
                         </div>
-                         {{ Form::label('name', 'name:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-3">
+                         {{ Form::label('name', 'name:', array('class' => 'control-label col-sm-2')) }}
+                        <div class="col-sm-2">
                             {{ Form::text('option_value[0][name]', old('name'), ['id' => 'name0', 'class' => 'form-control', 'placeholder' => 'name']) }}
                         </div>
                     </div>
                     
                     
                     <div class="form-group required">
-                        {{ Form::label('label', '	label:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-3">
+                        {{ Form::label('label', '	label:', array('class' => 'control-label col-sm-2')) }}
+                        <div class="col-sm-2">
                             {{ Form::text('option_value[1][label]', old('label'), ['id' => 'label1', 'class' => 'form-control', 'placeholder' => 'label']) }}
                         </div>
-                        {{ Form::label('value', 'value:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-3">
+                        {{ Form::label('value', 'value:', array('class' => 'control-label col-sm-2')) }}
+                        <div class="col-sm-2">
                             {{ Form::text('option_value[1][value]', old('value'), ['id' => 'value1', 'class' => 'form-control', 'placeholder' => 'value']) }}
                         </div>
-                         {{ Form::label('name', 'name:', array('class' => 'control-label col-sm-3')) }}
-                        <div class="col-sm-3">
+                         {{ Form::label('name', 'name:', array('class' => 'control-label col-sm-2')) }}
+                        <div class="col-sm-2">
                             {{ Form::text('option_value[1][name]', old('name'), ['id' => 'name1', 'class' => 'form-control', 'placeholder' => 'name']) }}
                         </div>
                     </div>

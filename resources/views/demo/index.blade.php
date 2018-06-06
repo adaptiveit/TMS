@@ -1,84 +1,73 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Laravel Dependent Dropdown Example with demo</title>
-    <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
-    <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
-     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-</head>
-<body>
-	
-	
-<script type="text/javascript">
-      $('#searchname').autocomplete({
-        source:'/index.php/admin/ajax',
-          minlength:1,
-          autoFocus:true,
-          select:function(e,ui)
-          {
-              $('#searchname').val(ui.item.value);
-          }
-      });
-</script>
-
-<input type="text" class="form-control" placeholder="TagName" id="searchname" name="TagName">
-
-<div class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">Select State and get bellow Related City</div>
-      <div class="panel-body">
-            <div class="form-group">
-                <label for="title">Select Group Name:</label>
-                 <select name="state" class="form-control" style="width:350px">
-                    <option value="">--- Select Group Name ---</option>
-                    @foreach ($fleets as $key => $value)
-                        <option value="{{ $key }}">{{ $value}}</option>
-                    @endforeach
-                </select>
+@extends('layouts.plane')
+@section('page_heading') {{$title}} @endsection
+@section('content')
+<div class="col-lg-12">
+    <div class="panel panel-default filterable">
+        <div class="panel-heading">
+            <div class="panel-title">{{$title}} List</div>
+			<div class="pull-right">
+                <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                <!--@if(AdminHelper::checkPermission('user_add'))-->
+                <a href="{{ URL::to('admin/demo/create') }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus-sign"></span> Add new</a>
+                <!--@endif-->
                 
             </div>
-            <div class="form-group">
-                <label for="title">Select Option value:</label>
-                <select name="city" class="form-control" style="width:350px">
-                </select>
+        </div>
+        <div class="panel-body">   
+            <div class="table-responsive">
+                <table id="data-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                         <tr class="filters">
+                            <th><input type="text" class="form-control form-control input-50" placeholder="#" disabled></th>
+                            <th><input type="text" class="form-control form-control input-100" placeholder="Name" disabled></th>
+                            <th><input type="text" class="form-control form-control input-100" placeholder="Address" disabled></th>
+                            <th><input type="text" class="form-control form-control input-100" placeholder="Contact Person" disabled></th>
+                            <th><input type="text" class="form-control form-control input-100" placeholder="Contact Number" disabled></th>
+                            <th><input type="text" class="form-control form-control input-100" placeholder="Remark" disabled></th>
+                            <!--<th><input type="text" class="form-control" placeholder="Status" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Created By" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Updated By" disabled></th>-->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        @foreach($demos as $key => $demo)
+                        <tr>
+                            <td>{{$demo->id}}</td>
+                            <td>{{$demo->supplier_name}}</td>
+                            <td>{{$demo->address}}</td>
+                            <td>{{$demo->contact_person}}</td>
+                            <td>{{$demo->telephone}}</td>
+                            <td>{{$demo->remarks}}</td>
+                           <!-- <td>{{$demo->status}}</td>
+                            <td>{{$demo->created_by}}</td>
+                            <td>{{$demo->updated_by}}</td>-->
+                            
+                            <td>
+                                <span class="btn-group" nowrap>
+                                   <!-- @if(AdminHelper::checkPermission('fuelstation_edit'))-->
+                                    <a href="{{ route('demo.edit', $demo->id) }}" class="xcrud-action btn btn-warning btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
+                                   <!-- @endif
+                                    @if(AdminHelper::checkPermission('fuelstation_delete'))-->
+                                    {{ Form::open(array('route' => array('demo.destroy', $demo->id), 'method' => 'DELETE')) }}
+                                    <button type="submit" class="xcrud-action btn btn-danger btn-sm" title="Remove"><i class="fa fa-trash-o"></i></button>
+                                    {{ Form::close() }}
+                                    <!-- @endif -->
+                                </span>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-      </div>
+        </div>
     </div>
+
 </div>
+@stop
 
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="state"]').on('change', function() {
-            var stateID = $(this).val();
-            var pathname = window.location.pathname;
-            var url      = window.location.href; 
-           // alert(pathname);
-            if(stateID) {
-                $.ajax({
-                    url: '/index.php/admin/ajax/'+stateID,
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
-						//alert(data);
-                        console.log(data);
-                        $('select[name="city"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="city"]').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-
-
-                    }
-                });
-            }else{
-                $('select[name="city"]').empty();
-            }
-        });
-    });
-</script>
 
 
 
