@@ -51,7 +51,7 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
   Route::resource('group', 'GroupController');
   
   Route::resource('option', 'OptionController'); 
-  //Route::resource('demo', 'DemoController'); 
+  Route::resource('demo', 'DemoController'); 
  
     
 });
@@ -61,7 +61,7 @@ Route::get('admin/ajax/{id}',array('as'=>'demo.ajax','uses'=>'DemoController@myf
 Route::get('admin/list',array('as'=>'tab','uses'=>'TabController@list'));
 Route::get('admin/json',array('as'=>'tab','uses'=>'TabController@form'));
 
-Route::get('autocomplete', 'AjaxAutocompleteController@index');
+//Route::get('autocomplete', 'AjaxAutocompleteController@index');
 Route::get('searchajax', ['as'=>'searchajax','uses'=>'AjaxAutocompleteController@searchResponse']);
 
 
@@ -75,10 +75,54 @@ Route::get('searchajax', ['as'=>'searchajax','uses'=>'AjaxAutocompleteController
 //Route::get('/admin/fleettype/edit/{id}', 'fleettypeController@edit')->name('fleettype.edit');
 //Route::put('/admin/fleettype/edit/{id}', 'fleettypeController@update')->name('fleettype.update');
 
+Route::get('autocomplete',array('as'=>'autocomplete','uses'=> 'DemoController@autocomplete'));
+Route::get('demo/find', 'DemoController@find');
+Route::get('demo/cdemo', 'DemoController@cdemo');
+Route::get('demo/optiondemo', array('as'=>'demo.optiondemo','uses'=> 'DemoController@optiondemo'));
+Route::get('demo/filter', [
+            'as' => 'demo.filter', 'uses' => 'DemoController@filter'
+        ]);
+Route::get ( 'datatable', array('as'=>'datatable','uses'=> 'DatatableController@index'));
 
+Route::post ( '/editItem', function (Request $request) {
+    
+    $rules = array (
+            'fname' => 'required|alpha',
+            'lname' => 'required|alpha',
+            'email' => 'required|email',
+            'gender' => 'required',
+            'country' => 'required|regex:/^[\pL\s\-]+$/u',
+            'salary' => 'required|regex:/^\d*(\.\d{2})?$/' 
+    );
+    $validator = Validator::make ( Input::all (), $rules );
+    if ($validator->fails ())
+        return Response::json ( array (             
+                'errors' => $validator->getMessageBag ()->toArray () 
+        ) );
+    else {
+        
+        $data = Data::find ( $request->id );
+        $data->first_name = ($request->fname);
+        $data->last_name = ($request->lname);
+        $data->email = ($request->email);
+        $data->gender = ($request->gender);
+        $data->country = ($request->country);
+        $data->salary = ($request->salary);
+        $data->save ();
+        return response ()->json ( $data );
+    }
+} );
 
+Route::post ( '/deleteItem', function (Request $request) {
+ Data::find ( $request->id )->delete ();
+ return response ()->json ();
+} );
 
-
+/*Route::get ( '/', function () {
+    $data = Data::all ();
+    return view ( 'welcome' )->withData ( $data );
+} );
+*/ 
 /*Route::get('/form',function(){
    return view('form');
 });*/
