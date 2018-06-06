@@ -737,7 +737,11 @@
                 "framework",
                 "laravel"
             ],
+
+
+
             "time": "2018-05-22 14:55:57"
+
         },
         {
             "name": "laravel/tinker",
@@ -1564,6 +1568,7 @@
         },
         {
             "name": "psy/psysh",
+
             "version": "v0.9.5",
             "source": {
                 "type": "git",
@@ -1574,6 +1579,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/0951e91ac04ca28cf317f3997a0adfc319e80106",
                 "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106",
+
                 "shasum": ""
             },
             "require": {
@@ -1632,64 +1638,12 @@
                 "interactive",
                 "shell"
             ],
+
+
+
             "time": "2018-06-02 16:39:22"
-        },
-        {
-            "name": "rafaelqm/laravel-datatables",
-            "version": "6.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rafaelqm/laravel-datatables.git",
-                "reference": "6f2821479a52c02fe2fb85d7a2594c6da7272525"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rafaelqm/laravel-datatables/zipball/6f2821479a52c02fe2fb85d7a2594c6da7272525",
-                "reference": "6f2821479a52c02fe2fb85d7a2594c6da7272525",
-                "shasum": ""
-            },
-            "require": {
-                "dompdf/dompdf": "^0.6.1",
-                "illuminate/database": "~5.0",
-                "illuminate/filesystem": "~5.0",
-                "illuminate/http": "~5.0",
-                "illuminate/support": "~5.0",
-                "illuminate/view": "~5.0",
-                "laravelcollective/html": "~5.0",
-                "league/fractal": "~0.12",
-                "maatwebsite/excel": "^2.0",
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Rafaelqm\\Datatables\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Arjay Angeles",
-                    "email": "aqangeles@gmail.com"
-                }
-            ],
-            "description": "jQuery DataTables API for Laravel 4|5",
-            "keywords": [
-                "datatable",
-                "datatables",
-                "datatables jquery plugin",
-                "laravel",
-                "laravel4",
-                "laravel5"
-            ],
-            "time": "2016-02-12 16:45:18"
+
+
         },
         {
             "name": "ramsey/uuid",
