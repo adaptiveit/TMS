@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::get('test','TabController@getActivity');
 //Route::get('/test','TabController@call_rest_webservice');
 
@@ -26,3 +27,8 @@ Route::get('test','TabController@form');
  * Webservice Datatable
  */
 Route::get ( '/webservice',  'WebserviceController@index');
+
+
+Route::get('test','TabController@form');
+
+
