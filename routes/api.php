@@ -16,11 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-<<<<<<< HEAD
 Route::get('test','TabController@getActivity');
 //Route::get('/test','TabController@call_rest_webservice');
 
 
-=======
 Route::get('test','TabController@form');
->>>>>>> d3b2f00d03d0a405a7499a69b64cbecac0ac10ff
+
+/*
+ * Webservice Datatable
+ */
+Route::get ( '/webservice',  'WebserviceController@index');

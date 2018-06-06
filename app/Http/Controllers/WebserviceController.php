@@ -3,10 +3,7 @@ namespace App\Http\Controllers;
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Models\Option;
-use App\Models\Group;
-use App\Models\Demo;
-use App\Models\Data;
+use App\Models\Webservice;
 use Auth;
 use Validator;
 use DB;
@@ -14,13 +11,13 @@ use AdminHelper;
 
 
 
-class DatatableController extends Controller
+class WebserviceController extends Controller
 {
 	public function __construct() {
     
     }
 
-public function show($id) {
+	public function show($id) {
         //
     }
     
@@ -29,14 +26,148 @@ public function show($id) {
 
    public function index()
         {
+			$param = array('email'=>'keshav@adaptiveit.net');
+			//$result = $this->getActivity($param);
+			$result = $this->getContact($param);
+			$data = json_decode($result);
+			//echo"<pre>";print_r($data);echo"</pre>";
 			$title = "Datatable";
-            $data = Data::latest()->paginate(10);
-            return view('demo.datatable',compact('data','title'))
+            //$data = Webservice::all()->paginate(10);
+            //echo"<pre>";print_r($data);echo"</pre>";exit;
+            return view('webservice.datatable',compact('data','title'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
         }
+/**
+ * Webservice Consume Start
+ */         
+  
+	public function getActivity($params = NULL){
+		//echo"<pre>";print_r($p);echo"</pre>";exit;
+		$url			= 'http://training.opencloudcrm.in/sites/all/modules/civicrm/extern/rest.php';
+		$parameters = [
+			'api_key'	=>	'abcdefghi',
+			'key'		=>	'a909bb04bc2a61a5ce7f57822626a24e',
+			'json'		=>	1,
+			'debug'		=>	1,
+			'version'	=>	3,
+			'entity' 	=> 'Activity',
+			'action'	=> 'get',
+			'email'		=> $params['email'],
+		];
+		//$parameters		= 'api_key=abcdefghi&key=a909bb04bc2a61a5ce7f57822626a24e&json=1&debug=1&version=3&entity=Activity&action=get&first_name=Keshav';
+		$method			= 'POST';
+		
+		//echo $url; exit;
+		$response	= $this->call_rest_webservice($url, $parameters, $method);
+		 return $response;
+		//print_r($response);exit;
+		//echo $response;
+		//exit;
+	}
+    
+    
+   public function getContact($params = NULL){
+		//$keyword	= $_REQUEST['keyword'];
+		//echo $keyword; exit;
+		//$key_arr	= explode("::", $keyword);
+		//$sort_name	= trim($key_arr[0]);
+		//$email		= trim($key_arr[1]);
+		
+		//debug($key_arr);exit;
+		
+		$url			= 'http://training.opencloudcrm.in/sites/all/modules/civicrm/extern/rest.php';
+		//$parameters		= 'api_key=abcdefghi&key=a909bb04bc2a61a5ce7f57822626a24e&json=1&debug=1&version=3&entity=Contact&action=get&first_name=Keshav';
+		$parameters = [
+			'api_key'	=>	'abcdefghi',
+			'key'		=>	'a909bb04bc2a61a5ce7f57822626a24e',
+			'json'		=>	1,
+			'debug'		=>	1,
+			'version'	=>	3,
+			'entity' 	=> 'Contact',
+			'action'	=> 'get',
+			//'sort_name'	=> '',
+			//'email'		=> $params['email'],
+		];
+		$method			= 'POST';
+		
+		//echo $url; exit;
+		$response	= $this->call_rest_webservice($url, $parameters, $method, 1);
+		return $response;
+		//exit;
+	}
+	
+	
+	
+	public function call_rest_webservice($url, $parameters, $method, $returnFlag=0){
+		$response	= $this->curl_request($url, $parameters, $method='GET');
+		//print_r($response);exit;
+		
+		// handling errors
+		$decoded_response	= json_decode($response);
+		//echo "<pre>"; print_r($decoded_response); echo "</pre>"; exit;
+		
+		if($decoded_response->is_error == 1){
+			$response				= 'Some error occured';
+			
+			if(isset($decoded_response->error_message) && $decoded_response->error_message != '')
+				$response	.= '<br />ERROR : ' . $decoded_response->error_message;
+			if(isset($decoded_response->error_code) && $decoded_response->error_code != '')
+				$response 	.= '<br />[ERROR_CODE : ]' . $decoded_response->error_code;
+		}
+		
+		//debug($decoded_response->values); exit;
+		//echo "<pre>"; print_r($response); echo "</pre>"; exit;
+		
+		if($returnFlag == 1)
+			return json_encode($decoded_response->values);
+		else
+			return $response;
+		
+	}
+	
+	
+	
+	
+	function curl_request($url, $parameters, $method='GET'){
+		//print_r($parameters); exit;
+		$params	=   http_build_query($parameters);
+		//$params		= $parameters;
+		//echo $params;
+		//exit;
+		if($method == 'GET')
+			$url	.= '?' . $params;	
+	
+		// create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, $url);
+				
+		if($method == 'POST'){
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+			//curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+		}
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		
+        // $output contains the output string
+        $output = curl_exec($ch);
+
+        // close curl resource to free up system resources
+        curl_close($ch); 
+		
+		//echo "<pre>"; print_r($output); echo "</pre>"; exit;
+		return $output;
+	} 
         
+/**
+ * Webservice Consume End
+ */         
         
-	public function datatableupdate(Request $request) {
+/*	public function datatableupdate(Request $request) {
 			$request_data = $request->all();
 			$rules = array (
 					'fname' => 'required|alpha',
@@ -85,7 +216,7 @@ public function show($id) {
          *
          * @return \Illuminate\Http\Response
          */
-   public function create()
+/*   public function create()
         {
 		$title = "Supplier";
 
@@ -160,7 +291,7 @@ public function show($id) {
                 ->with('i', (request()->input('page', 1) - 1) * 5);	
             */
             	    
-			$orders = Option::select(array(
+		/*	$orders = Option::select(array(
 				'id', 'value', 'name', 'option_group_id'
 			));
 
@@ -173,6 +304,7 @@ public function show($id) {
             return view('demo.optiondemo',compact('options','title'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);	
 		}
+		*/
     
     
     
