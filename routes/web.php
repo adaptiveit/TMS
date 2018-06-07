@@ -51,6 +51,7 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
   Route::resource('group', 'GroupController');
   
   Route::resource('option', 'OptionController'); 
+  
   Route::resource('demo', 'DemoController'); 
  
     
@@ -75,6 +76,9 @@ Route::get('searchajax', ['as'=>'searchajax','uses'=>'AjaxAutocompleteController
 //Route::get('/admin/fleettype/edit/{id}', 'fleettypeController@edit')->name('fleettype.edit');
 //Route::put('/admin/fleettype/edit/{id}', 'fleettypeController@update')->name('fleettype.update');
 
+/*
+ *Autocomplete Multiselect 
+ */
 Route::get('autocomplete',array('as'=>'autocomplete','uses'=> 'DemoController@autocomplete'));
 Route::get('demo/find', 'DemoController@find');
 Route::get('demo/cdemo', 'DemoController@cdemo');
@@ -82,41 +86,19 @@ Route::get('demo/optiondemo', array('as'=>'demo.optiondemo','uses'=> 'DemoContro
 Route::get('demo/filter', [
             'as' => 'demo.filter', 'uses' => 'DemoController@filter'
         ]);
+/*
+ * Datable 
+ */ 
 Route::get ( 'datatable', array('as'=>'datatable','uses'=> 'DatatableController@index'));
 
-Route::post ( '/editItem', function (Request $request) {
-    
-    $rules = array (
-            'fname' => 'required|alpha',
-            'lname' => 'required|alpha',
-            'email' => 'required|email',
-            'gender' => 'required',
-            'country' => 'required|regex:/^[\pL\s\-]+$/u',
-            'salary' => 'required|regex:/^\d*(\.\d{2})?$/' 
-    );
-    $validator = Validator::make ( Input::all (), $rules );
-    if ($validator->fails ())
-        return Response::json ( array (             
-                'errors' => $validator->getMessageBag ()->toArray () 
-        ) );
-    else {
-        
-        $data = Data::find ( $request->id );
-        $data->first_name = ($request->fname);
-        $data->last_name = ($request->lname);
-        $data->email = ($request->email);
-        $data->gender = ($request->gender);
-        $data->country = ($request->country);
-        $data->salary = ($request->salary);
-        $data->save ();
-        return response ()->json ( $data );
-    }
-} );
+Route::post ( '/editItem', 'DatatableController@datatableupdate' );
 
-Route::post ( '/deleteItem', function (Request $request) {
- Data::find ( $request->id )->delete ();
- return response ()->json ();
-} );
+Route::post ( '/deleteItem',  'DatatableController@datatabledelete');
+
+/*
+ * Webservice Datatable
+ */
+//Route::get ( '/webservice',  'WebserviceController@index');
 
 /*Route::get ( '/', function () {
     $data = Data::all ();
