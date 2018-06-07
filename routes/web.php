@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => 'admin'], function()
  
     
 });
-Route::get('admin',array('as'=>'demo','uses'=>'DemoController@index'));
+Route::get('admin',array('as'=>'demo','uses'=>'DemoController@inx'));
 Route::get('admin/ajax/{id}',array('as'=>'demo.ajax','uses'=>'DemoController@myformAjax'));
 
 Route::get('admin/list',array('as'=>'tab','uses'=>'TabController@list'));

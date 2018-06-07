@@ -13,6 +13,7 @@ use AdminHelper;
 
 
 
+
 class DemoController extends Controller
 {
 	public function __construct() {
@@ -68,17 +69,18 @@ public function listindex(Request $request)
                 'error' => false,
                 'products' =>$products->toArray(),
                ),200);       
-    }      
+    }*/      
       
-public function index() {
+public function inx() {
         $title = "Option";
+        //print_r(self::getActivity());exit;
         $limit = config('admin.record_per_page');
          $fleets = DB::table('tbl_option_group')->pluck('name','id');
         //echo"<pre>";print_r($fleets);echo"</pre>";exit;
         
-        return view('demo.index', compact('title', 'fleets'));
+        return view('demo.inx', compact('title', 'fleets'));
 }
-*/
+
 public function show($id) {
         //
     }

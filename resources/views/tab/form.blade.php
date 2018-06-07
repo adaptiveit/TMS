@@ -24,17 +24,17 @@
     </ul>
    
     <div id="tabs-1" style="padding:0">
-	<?php
-		$orders = json_decode($title, true); 
-		/*echo '<pre>';
-print_r($orders['values']);
-echo '</pre>';*/
-		
-		?>
+		   <tbody>
 	@foreach($orders['values'] as $order)
-	{{ $order['subject'] }}
+	 <tr>
+	<td>{{ $order['subject'] }}</td>
+	<td>{{ $order['activity_date_time'] }}</td>
+	
 	
 	 @endforeach
+	 </tr>
+	 
+		   </tbody>
 
     </div>
     

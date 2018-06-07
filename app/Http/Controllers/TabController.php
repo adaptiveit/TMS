@@ -15,6 +15,7 @@ use AdminHelper;
 class TabController extends Controller
 {
 	 public function __construct() {
+		 //print_r('ggg');
        // $this->middleware('admin');
        // $this->middleware('acl:fleet_add', ['only' => ['create', 'store']]);
        // $this->middleware('acl:fleet_edit', ['only' => ['edit', 'update']]);
@@ -33,9 +34,11 @@ class TabController extends Controller
     {
 					
 	$title = $this->getActivity();
+	$orders = json_decode($title, true); 
+	//$title = "User";
 	//print_r($title);exit;
 	//return  view('tab.form')->with('title', json_decode($title, true));
-    return view('tab.form',compact('title'));
+    return view('tab.form',compact('orders'));
 		
 }		
     
@@ -45,13 +48,14 @@ public function list()
 				
 	
 	$title = "User";
+	
     return view('tab.list',compact('title'));
         
                    
     }
 
 
-	public function getActivity(){
+public function getActivity(){
 		$url			= 'http://training.opencloudcrm.in/sites/all/modules/civicrm/extern/rest.php';
 		$parameters = [
 			'api_key'	=>	'abcdefghi',
@@ -75,7 +79,7 @@ public function list()
 	}
     
     
-   public function getContact(){
+public function getContact(){
 		$keyword	= $_REQUEST['keyword'];
 		//echo $keyword; exit;
 		$key_arr	= explode("::", $keyword);
@@ -107,7 +111,7 @@ public function list()
 	
 	
 	
-	public function call_rest_webservice($url, $parameters, $method, $returnFlag=0){
+public function call_rest_webservice($url, $parameters, $method, $returnFlag=0){
 		$response	= $this->curl_request($url, $parameters, $method='GET');
 		//print_r($response);exit;
 		
